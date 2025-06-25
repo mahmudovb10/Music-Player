@@ -21,6 +21,18 @@
         alt=""
         width="200"
       />
+      <span id="rangeValue">0</span>
+      <input
+        id="volumeChanger"
+        type="range"
+        name=""
+        id=""
+        value="30"
+        max="30"
+        step="1"
+        onchange="rangeSlide(this.value)"
+        onmousemove="rangeSlide(this.value)"
+      />
       <audio src="./audios/Weeknd - Blinding Lights.mp3"></audio>
       <div class="progress-container">
         <div class="progress"></div>

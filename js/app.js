@@ -3,8 +3,10 @@ const forwardBtn = document.querySelector("#forward");
 const backgwordBtn = document.querySelector("#backward");
 const progressContainer = document.querySelector(".progress-container");
 const progressEl = document.querySelector(".progress");
+const volumeChanger = document.querySelector("#volumeChanger");
 
 const audio = document.querySelector("audio");
+audio.volume = +volumeChanger.value / 100;
 const container = document.querySelector(".container");
 
 function play() {
@@ -44,3 +46,9 @@ function changeTime(e) {
 playBtn.addEventListener("click", musicPlay);
 audio.addEventListener("timeupdate", progress);
 progressContainer.addEventListener("click", changeTime);
+volumeChanger.addEventListener("input", () => {
+  audio.volume = +volumeChanger.value / 100;
+});
+function rangeSlide(value) {
+  document.getElementById("rangeValue").innerHTML = value;
+}

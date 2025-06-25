@@ -1,3 +1,9 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -40,4 +46,10 @@
   100% {
     transform: rotate(360deg);
   }
+}
+
+#rangeValue {
+  position: relative;
+  right: 5rem;
+  top: 2.3rem;
 }
