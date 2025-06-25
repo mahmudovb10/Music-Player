@@ -53,3 +53,25 @@
   right: 5rem;
   top: 2.3rem;
 }
+#volumeChanger {
+}
+#volumeText {
+  position: relative;
+  top: 3rem;
+}
+#backward {
+  width: 1.5rem;
+  height: 1.3rem;
+  position: relative;
+  right: 0.5rem;
+}
+#play {
+  width: 1.5rem;
+  height: 1.3rem;
+}
+#forward {
+  width: 1.5rem;
+  height: 1.3rem;
+  position: relative;
+  left: 0.5rem;
+}
