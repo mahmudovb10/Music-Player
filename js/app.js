@@ -4,7 +4,12 @@ const backgwordBtn = document.querySelector("#backward");
 const progressContainer = document.querySelector(".progress-container");
 const progressEl = document.querySelector(".progress");
 const volumeChanger = document.querySelector("#volumeChanger");
-const cover = document.getElementById("cover1");
+const volumeEl = document.querySelector("audio");
+const cover = document.getElementById("cover");
+const musicTitle = document.querySelector("#musicTitle");
+const audio = document.querySelector("audio"); // AVVAL audio aniqlanadi!
+const container = document.querySelector(".container");
+
 const songs = [
   "Weeknd - Blinding Lights",
   "Konsta - Insonlar",
@@ -12,17 +17,15 @@ const songs = [
 ];
 
 let currentPlayingSong = 0;
+audio.volume = +volumeChanger.value / 100;
 
-function changerSong(current) {
-  audio.src = `${songs[current]}.mp3`;
-  cover.src = `${songs[current]}.png`;
+function changeSong(current) {
+  audio.src = `./audios/${songs[current]}.mp3`;
+  cover.src = `./images/${songs[current]}.png`;
+  musicTitle.textContent = songs[current];
 }
 
-changerSong(currentPlayingSong);
-
-const audio = document.querySelector("audio");
-audio.volume = +volumeChanger.value / 100;
-const container = document.querySelector(".container");
+changeSong(currentPlayingSong); // KEYIN chaqiriladi
 
 function play() {
   audio.play();
@@ -44,10 +47,10 @@ function musicPlay() {
     play();
   }
 }
+
 function progress() {
   const duration = audio.duration;
   const currentTime = audio.currentTime;
-
   const p = (currentTime / duration) * 100;
   progressEl.style.width = `${p}%`;
 }

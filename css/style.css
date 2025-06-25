@@ -58,6 +58,7 @@
 #volumeText {
   position: relative;
   top: 3rem;
+  right: 0.5rem;
 }
 #backward {
   width: 1.5rem;
