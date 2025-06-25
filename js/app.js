@@ -4,6 +4,21 @@ const backgwordBtn = document.querySelector("#backward");
 const progressContainer = document.querySelector(".progress-container");
 const progressEl = document.querySelector(".progress");
 const volumeChanger = document.querySelector("#volumeChanger");
+const cover = document.getElementById("cover1");
+const songs = [
+  "Weeknd - Blinding Lights",
+  "Konsta - Insonlar",
+  "Konsta - Odamlar Nima Deydi",
+];
+
+let currentPlayingSong = 0;
+
+function changerSong(current) {
+  audio.src = `${songs[current]}.mp3`;
+  cover.src = `${songs[current]}.png`;
+}
+
+changerSong(currentPlayingSong);
 
 const audio = document.querySelector("audio");
 audio.volume = +volumeChanger.value / 100;

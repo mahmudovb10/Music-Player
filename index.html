@@ -16,6 +16,7 @@
   <body>
     <div class="container">
       <img
+        id="cover1"
         class="cover"
         src="./images/Weeknd - Blinding Lights.png"
         alt=""
@@ -28,12 +29,13 @@
         type="range"
         name=""
         id=""
-        value="30"
-        max="30"
+        value="100"
+        max="100"
         step="1"
         onchange="rangeSlide(this.value)"
         onmousemove="rangeSlide(this.value)"
       />
+      <h3 id="volumeTitle">Weeknd - Blinding Lights</h3>
       <audio src="./audios/Weeknd - Blinding Lights.mp3"></audio>
       <div class="progress-container">
         <div class="progress"></div>
