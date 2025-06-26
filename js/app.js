@@ -11,6 +11,10 @@ const audio = document.querySelector("audio");
 const container = document.querySelector(".container");
 const durationEl = document.getElementById("duration");
 const currentTimeEl = document.getElementById("current-duration");
+const speed = document.getElementById("speed");
+const normalSpeed = document.getElementById("normalSpeed");
+const mutedBtn = document.getElementById("mutedBtn");
+const video = document.querySelector(".clips");
 
 audio.addEventListener("loadeddata", () => {
   const duration = audio.duration;
@@ -20,8 +24,32 @@ audio.addEventListener("loadeddata", () => {
     +seconds < 10 ? `${seconds.padStart(2, 0)}` : seconds
   }`;
   durationEl.textContent = time;
-  audio.playbackRate = 2;
 });
+
+speed.addEventListener("click", () => {
+  const musicSpeed = (audio.playbackRate = 2);
+});
+normalSpeed.addEventListener("click", () => {
+  const normSpeed = (audio.playbackRate = 1);
+});
+
+// mutedBtn.addEventListener("click", function () {
+//   audio.muted = !audio.muted;
+//   mutedBtn.textContent = audio.muted ? "Unmute" : "Mute";
+// });
+
+const clips = [
+  "The Weeknd - Blinding Linding",
+  "Konsta -  Odamlar Nima Deydi",
+  "Konsta - Insonlar",
+];
+let currentClips = 0;
+
+function changeClips(current) {
+  audio.src = `./audios/${songs[current]}.mp3`;
+  cover.src = `./images/${songs[current]}.png`;
+  clips.src = `./videos/${songs[current]}.mp4`;
+}
 
 const songs = [
   "Weeknd - Blinding Lights",
@@ -32,15 +60,23 @@ const songs = [
 let currentPlayingSong = 0;
 
 function changeSong(current) {
-  audio.src = `./audios/${songs[current]}.mp3`;
-  cover.src = `./images/${songs[current]}.png`;
-  musicTitle.textContent = songs[current];
+  const songName = songs[current];
+  const clipName = clips[current];
+
+  audio.src = `./audios/${songName}.mp3`;
+  cover.src = `./images/${songName}.png`;
+  video.src = `./videos/${clipName}.mp4`;
+
+  musicTitle.textContent = songName;
+
+  video.play();
 }
 
 changeSong(currentPlayingSong);
 
 function play() {
   audio.play();
+  video.play();
   container.classList.add("play");
   playBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
 }
@@ -69,6 +105,7 @@ function prevSong() {
 
 function pause() {
   audio.pause();
+  video.pause();
   container.classList.remove("play");
   playBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
 }
@@ -86,25 +123,28 @@ function progress() {
   const duration = audio.duration;
   const currentTime = audio.currentTime;
 
-  const IncreaseTime = isNaN(duration - currentTime)
-    ? 0
-    : duration + currentTime;
-
+  // Vaqt formatlash
   const minutes = String(Math.floor(currentTime / 60)).padStart(2, "0");
   const seconds = String(Math.floor(currentTime % 60)).padStart(2, "0");
-  let time = `${+minutes > 10 ? `${minutes.padStart(2, 0)}` : minutes}:${
-    +seconds < 10 ? `${seconds.padStart(2, 0)}` : seconds
-  }`;
   currentTimeEl.textContent = `${minutes}:${seconds}`;
 
-  const p = (currentTime / IncreaseTime) * 100;
-  progressEl.style.width = `${p}%`;
+  // Progress hisoblash
+  if (!isNaN(duration)) {
+    const progressPercent = (currentTime / duration) * 100;
+    progressEl.style.width = `${progressPercent}%`;
+  }
 }
 
 function changeTime(e) {
-  const p = (e.offsetX / this.clientWidth) * 100;
-  const currentTime = (audio.duration / 100) * p;
-  audio.currentTime = currentTime;
+  const clickX = e.offsetX;
+  const width = this.clientWidth;
+  const duration = audio.duration;
+
+  if (!isNaN(duration)) {
+    const newTime = (clickX / width) * duration;
+    audio.currentTime = newTime;
+    video.currentTime = newTime; // 🎥 video ham birga o‘tadi!
+  }
 }
 
 playBtn.addEventListener("click", musicPlay);
@@ -119,3 +159,4 @@ function rangeSlide(value) {
 audio.addEventListener("ended", nextSong);
 backgwordBtn.addEventListener("click", prevSong);
 forwardBtn.addEventListener("click", nextSong);
+mutedBtn.addEventListener("click", mute);

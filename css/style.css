@@ -4,6 +4,26 @@
   margin: 0;
 }
 
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+.clips {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
+  object-fit: cover;
+  width: 100vw;
+  height: 100vh;
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -56,6 +76,21 @@
   }
 }
 
+main {
+  position: relative;
+  top: 5rem;
+}
+
+#volumeChanger {
+  width: 15rem;
+  height: auto;
+}
+
+#volumeChanger::-webkit-slider-thumb {
+  color: tomato;
+  background-color: tomato;
+}
+
 #rangeValue {
   position: relative;
   left: 5rem;
@@ -73,14 +108,68 @@
   height: 1.3rem;
   position: relative;
   right: 0.5rem;
+  border-radius: 7px;
+  background-color: #ccc;
+  transition: 0.5s;
 }
+
 #play {
   width: 1.5rem;
   height: 1.3rem;
+  border-radius: 7px;
+  background-color: #ccc;
+  transition: 1s;
 }
+
 #forward {
   width: 1.5rem;
   height: 1.3rem;
   position: relative;
   left: 0.5rem;
+  border-radius: 7px;
+  background-color: #ccc;
+  transition: 0.5s;
+}
+#speedBtn {
+  display: flex;
+  gap: 15px;
+}
+#normalSpeed {
+  width: 2rem;
+  height: 1.3rem;
+  position: relative;
+  right: 3rem;
+  top: 4.95rem;
+  border-radius: 7px;
+  background-color: #ccc;
+  transition: 0.5s;
+}
+#speed {
+  width: 2rem;
+  height: 1.3rem;
+  position: relative;
+  left: 3rem;
+  top: 4.95rem;
+  border-radius: 7px;
+  background-color: #ccc;
+  transition: 0.5s;
+}
+
+#volumeText {
+  color: whitesmoke;
+}
+
+#rangeValue {
+  color: whitesmoke;
+}
+
+#musicTitle {
+  color: whitesmoke;
+}
+#current-duration {
+  color: whitesmoke;
+}
+
+#duration {
+  color: whitesmoke;
 }
