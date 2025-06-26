@@ -7,17 +7,29 @@ const volumeChanger = document.querySelector("#volumeChanger");
 const volumeEl = document.querySelector("audio");
 const cover = document.getElementById("cover");
 const musicTitle = document.querySelector("#musicTitle");
-const audio = document.querySelector("audio"); // AVVAL audio aniqlanadi!
+const audio = document.querySelector("audio");
 const container = document.querySelector(".container");
+const durationEl = document.getElementById("duration");
+const currentTimeEl = document.getElementById("current-duration");
+
+audio.addEventListener("loadeddata", () => {
+  const duration = audio.duration;
+  const minutes = String(Math.floor(duration / 60));
+  const seconds = String(Math.floor(duration % 60));
+  let time = `${+minutes < 10 ? `${minutes.padStart(2, 0)}` : minutes}:${
+    +seconds < 10 ? `${seconds.padStart(2, 0)}` : seconds
+  }`;
+  durationEl.textContent = time;
+  audio.playbackRate = 2;
+});
 
 const songs = [
   "Weeknd - Blinding Lights",
-  "Konsta - Insonlar",
   "Konsta - Odamlar Nima Deydi",
+  "Konsta - Insonlar",
 ];
 
 let currentPlayingSong = 0;
-audio.volume = +volumeChanger.value / 100;
 
 function changeSong(current) {
   audio.src = `./audios/${songs[current]}.mp3`;
@@ -25,12 +37,34 @@ function changeSong(current) {
   musicTitle.textContent = songs[current];
 }
 
-changeSong(currentPlayingSong); // KEYIN chaqiriladi
+changeSong(currentPlayingSong);
 
 function play() {
   audio.play();
   container.classList.add("play");
   playBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+}
+
+function nextSong() {
+  if (currentPlayingSong < songs.length - 1) {
+    currentPlayingSong++;
+  } else {
+    currentPlayingSong = 0;
+  }
+
+  changeSong(currentPlayingSong);
+  play();
+}
+
+function prevSong() {
+  if (currentPlayingSong > 0) {
+    currentPlayingSong--;
+  } else {
+    currentPlayingSong = songs.length - 1;
+  }
+
+  changeSong(currentPlayingSong);
+  play();
 }
 
 function pause() {
@@ -51,7 +85,19 @@ function musicPlay() {
 function progress() {
   const duration = audio.duration;
   const currentTime = audio.currentTime;
-  const p = (currentTime / duration) * 100;
+
+  const IncreaseTime = isNaN(duration - currentTime)
+    ? 0
+    : duration + currentTime;
+
+  const minutes = String(Math.floor(currentTime / 60)).padStart(2, "0");
+  const seconds = String(Math.floor(currentTime % 60)).padStart(2, "0");
+  let time = `${+minutes > 10 ? `${minutes.padStart(2, 0)}` : minutes}:${
+    +seconds < 10 ? `${seconds.padStart(2, 0)}` : seconds
+  }`;
+  currentTimeEl.textContent = `${minutes}:${seconds}`;
+
+  const p = (currentTime / IncreaseTime) * 100;
   progressEl.style.width = `${p}%`;
 }
 
@@ -70,3 +116,6 @@ volumeChanger.addEventListener("input", () => {
 function rangeSlide(value) {
   document.getElementById("rangeValue").innerHTML = value;
 }
+audio.addEventListener("ended", nextSong);
+backgwordBtn.addEventListener("click", prevSong);
+forwardBtn.addEventListener("click", nextSong);
