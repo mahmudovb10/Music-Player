@@ -15,6 +15,8 @@ const speed = document.getElementById("speed");
 const normalSpeed = document.getElementById("normalSpeed");
 const mutedBtn = document.getElementById("mutedBtn");
 const video = document.querySelector(".clips");
+const slowSpeed = document.getElementById("slowSpeed");
+const verySpeed = document.getElementById("verySpeed");
 
 audio.addEventListener("loadeddata", () => {
   const duration = audio.duration;
@@ -32,12 +34,12 @@ speed.addEventListener("click", () => {
 normalSpeed.addEventListener("click", () => {
   const normSpeed = (audio.playbackRate = 1);
 });
-
-// mutedBtn.addEventListener("click", function () {
-//   audio.muted = !audio.muted;
-//   mutedBtn.textContent = audio.muted ? "Unmute" : "Mute";
-// });
-
+slowSpeed.addEventListener("click", () => {
+  const slowSpeed = (audio.playbackRate = 0.5);
+});
+verySpeed.addEventListener("click", () => {
+  const verySpeed = (audio.playbackRate = 3);
+});
 const clips = [
   "The Weeknd - Blinding Linding",
   "Konsta -  Odamlar Nima Deydi",
@@ -123,12 +125,10 @@ function progress() {
   const duration = audio.duration;
   const currentTime = audio.currentTime;
 
-  // Vaqt formatlash
   const minutes = String(Math.floor(currentTime / 60)).padStart(2, "0");
   const seconds = String(Math.floor(currentTime % 60)).padStart(2, "0");
   currentTimeEl.textContent = `${minutes}:${seconds}`;
 
-  // Progress hisoblash
   if (!isNaN(duration)) {
     const progressPercent = (currentTime / duration) * 100;
     progressEl.style.width = `${progressPercent}%`;
@@ -143,7 +143,7 @@ function changeTime(e) {
   if (!isNaN(duration)) {
     const newTime = (clickX / width) * duration;
     audio.currentTime = newTime;
-    video.currentTime = newTime; // 🎥 video ham birga o‘tadi!
+    video.currentTime = newTime;
   }
 }
 
