@@ -50,7 +50,7 @@ html {
 }
 
 .progress {
-  background-color: rgb(148, 235, 235);
+  background-color: rgba(255, 0, 0, 0.6);
   border-radius: inherit;
   height: inherit;
   width: 0%;
@@ -85,17 +85,20 @@ main {
 
 #volumeChanger {
   width: 15rem;
-  height: auto;
+  height: 12px;
   position: relative;
   top: 9rem;
 }
 
 input[type="range"] {
-  accent-color: #111;
+  accent-color: rgba(255, 0, 0, 0.6);
   outline: none;
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 0 5px rgb(255, 250, 250);
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
 }
 
 .volume__change::-webkit-slider-thumb {
@@ -103,10 +106,9 @@ input[type="range"] {
   width: 15px;
   height: 15px;
   border-radius: 50%;
-  background: #d66dff;
   cursor: grab;
-  border: 4px solid #333;
-  box-shadow: -407px 0 0 400px rgb(148, 235, 235);
+  border: 4px solid transparent;
+  box-shadow: -407px 0 0 400px rgba(255, 0, 0, 0.6);
 }
 
 #volumeChanger::-webkit-slider-thumb {
@@ -135,18 +137,24 @@ input[type="range"] {
   right: 1rem;
   bottom: 0.5rem;
   border-radius: 50%;
-  background-color: rgb(148, 235, 235);
-  transition: 0.5s;
+  border: 1px solid transparent;
+  background-color: rgba(255, 0, 0, 0.4);
+  backdrop-filter: blut(4px);
+  transition: 0.3s ease;
+  color: white;
 }
 
 #play {
   width: 2.5rem;
   height: 2.3rem;
   border-radius: 50%;
-  background-color: rgb(148, 235, 235);
-  transition: 1s;
+  border: 1px solid transparent;
+  background-color: rgba(255, 0, 0, 0.4);
+  backdrop-filter: blut(4px);
+  transition: 0.3s ease;
   position: relative;
   bottom: 0.5rem;
+  color: white;
 }
 
 #forward {
@@ -155,9 +163,12 @@ input[type="range"] {
   position: relative;
   left: 1rem;
   border-radius: 50%;
-  background-color: rgb(148, 235, 235);
-  transition: 0.5s;
   bottom: 0.5rem;
+  border: 1px solid transparent;
+  background-color: rgba(255, 0, 0, 0.4);
+  backdrop-filter: blut(4px);
+  transition: 0.3s ease;
+  color: white;
 }
 
 #speedBtn {
@@ -171,8 +182,11 @@ input[type="range"] {
   right: 10rem;
   top: 9rem;
   border-radius: 50%;
-  background-color: rgb(148, 235, 235);
-  transition: 0.5s;
+  border: 1px solid transparent;
+  background-color: rgba(255, 0, 0, 0.4);
+  backdrop-filter: blut(4px);
+  transition: 0.3s ease;
+  color: white;
 }
 #normalSpeed {
   width: 2.5rem;
@@ -181,8 +195,11 @@ input[type="range"] {
   right: 5.5rem;
   top: 5.5rem;
   border-radius: 50%;
-  background-color: rgb(148, 235, 235);
-  transition: 0.5s;
+  border: 1px solid transparent;
+  background-color: rgba(255, 0, 0, 0.4);
+  backdrop-filter: blut(4px);
+  transition: 0.3s ease;
+  color: white;
 }
 #verySpeed {
   width: 2.5rem;
@@ -191,8 +208,11 @@ input[type="range"] {
   left: 10rem;
   top: 12.5rem;
   border-radius: 50%;
-  background-color: rgb(148, 235, 235);
-  transition: 0.5s;
+  border: 1px solid transparent;
+  background-color: rgba(255, 0, 0, 0.4);
+  backdrop-filter: blut(4px);
+  transition: 0.3s ease;
+  color: white;
 }
 #speed {
   width: 2.5rem;
@@ -201,8 +221,11 @@ input[type="range"] {
   left: 5.5rem;
   top: 5.4rem;
   border-radius: 50%;
-  background-color: rgb(148, 235, 235);
-  transition: 0.5s;
+  border: 1px solid transparent;
+  background-color: rgba(255, 0, 0, 0.4);
+  backdrop-filter: blut(4px);
+  transition: 0.3s ease;
+  color: white;
 }
 
 #volumeText {
